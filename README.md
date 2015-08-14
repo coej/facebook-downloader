@@ -8,6 +8,8 @@ Limitations:
 * Fields aren't all saved as correct types (e.g., some date fields are saved as strings).
 * Post comments aren't saved except for comments included in the first page of API results (requires crawling through pages of comments returned by the API).
 
+FacebookConnection().query() and get_post_insights() also provide more general-purpose Facebook Graph API interfaces.
+
 Usage example:
 ```Python
 from facebook_downloader import downloader, FacebookConnection
