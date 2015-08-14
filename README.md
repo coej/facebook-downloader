@@ -2,13 +2,14 @@
 Downloads the full history of Facebook post data and analytics ("insights") to a local database. 
 
 Limitations:
-* MongoDB only for now via PyMongo. Postgres support to be added next.
+* Downloads to MongoDB only for now, via PyMongo. PostgresQL support to be added next.
 * Tested only on organization pages (doesn't work on personal accounts yet).
-* Fields aren't processed nicely yet (e.g., some data data is saved as strings instead of DateTime)
+* Fields aren't all saved as correct types (e.g., some date fields are saved as strings).
+* Post comments aren't saved except for comments included in the first page of API results (requires crawling through pages of comments returned by the API).
 
 Usage example:
 ```Python
-from facebookapi_wrapper import facebook_downloader, FacebookConnection
+from facebook_downloader import downloader, FacebookConnection
 
 import pymongo
 client = pymongo.MongoClient('mongodb://localhost:27017/')
@@ -40,11 +41,11 @@ for (account, acct_token) in [('myorgpage', token_org1),
     print('\n', account_coll)
     print(acct_token)
 
-    facebook_downloader(collection=account_coll, 
-                        account_id=account, 
-                        token=acct_token, 
-                        since='2015-01-01', 
-                        until='2015-07-01', 
-                        skip_duplicates=True, 
-                        silent=False)
+    downloader(collection=account_coll, 
+               account_id=account, 
+               token=acct_token, 
+               since='2015-01-01', 
+               until='2015-07-01', 
+               skip_duplicates=True, 
+               silent=False)
 ```
