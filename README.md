@@ -3,6 +3,7 @@ Downloads the full history of Facebook post data and analytics ("insights") to a
 
 Limitations:
 * Downloads to MongoDB only for now, via PyMongo. PostgresQL support to be added next.
+* Can't update individual post documents already in MongoDB (but can ignore duplicate post IDs).
 * Tested only on organization pages (doesn't work on personal accounts yet).
 * Fields aren't all saved as correct types (e.g., some date fields are saved as strings).
 * Post comments aren't saved except for comments included in the first page of API results (requires crawling through pages of comments returned by the API).
