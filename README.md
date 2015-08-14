@@ -25,13 +25,12 @@ print (db.posts_myorganizationpage)
 token = 'CAACEdEose0c...'
 fb = FacebookConnection(token)
 
-# testing connection
-auth_list = fb.query(node='me', edge='accounts') 
-
 # get 60-day tokens for organizational accounts you have access to
+auth_list = fb.query(node='me', edge='accounts') 
 tokens = {acct['name']: acct['access_token'] for acct in auth_list['data']}
 print(tokens)
 
+# pick out the labels for accounts we want to use from the output of print(tokens), then:
 token_org1 = tokens['long name of organization number one']
 token_org2 = tokens['long name of organization number two']
 
