@@ -1,0 +1,16 @@
+def get_facebook_title(href):
+    print('.', end='')
+    try:
+        import requests
+        from bs4 import BeautifulSoup
+        doc = requests.get(href)
+        soup = BeautifulSoup(doc.text, 'html.parser')
+        title = soup.html.head.title
+        data = soup.findAll('h2',attrs={'class':'uiHeaderTitle'});
+        for a in data:
+            return a.string
+        else:
+            return title.string
+        return "[couldn't fetch title]"
+    except:
+        return "[couldn't fetch title]"
