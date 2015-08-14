@@ -1,4 +1,4 @@
-# facebook_downloader
+# facebook-downloader
 Downloads the full history of Facebook post data and analytics ("insights") to a local database. 
 
 Limitations:
@@ -41,11 +41,11 @@ for (account, acct_token) in [('myorgpage', token_org1),
     print('\n', account_coll)
     print(acct_token)
 
-    downloader(collection=account_coll, 
-               account_id=account, 
-               token=acct_token, 
-               since='2015-01-01', 
-               until='2015-07-01', 
+    downloader(collection=account_coll,  # pymongo collection object
+               account_id=account,       # facebook account node
+               token=acct_token,
+               since='2015-01-01',       # string, e.g., '2015-01-01'
+               until='2015-07-01',       # string, e.g., '2015-03-31'
                skip_duplicates=True, 
                silent=False)
 ```
